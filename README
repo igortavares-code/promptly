@@ -1,0 +1,38 @@
+# 🌟 PROMPTLY
+
+A web and mobile app (Android & iOS) designed to simplify formatting and response types for Gemini prompts, aimed at users who write texts like articles, essays, and other written creations.
+
+![Screenshot do projeto](https://drive.google.com/file/d/1Ubz4_h9Tj036C4ffmlQkidoUSViIe3S_/view?usp=sharing)
+
+## 🚀 Technologies Used
+
+- React (Web)  
+- React Native (Android & iOS)
+- Typescript
+
+## ⚙️ Main Features
+
+- Input of prompts
+- List of format categories and their types
+
+## 🛠 How to Run Locally
+
+1. Clone the repository:  
+git clone https://github.com/igortavares-code/promptly.git
+
+2. Navigate to the project folder:  
+cd promptly
+
+3. Install dependencies:  npm install
+
+4. Run on web: npm expo start
+
+5. Open your browser at `http://localhost:19006` or use the Expo app on your phone.
+
+## 🔨 Project Status
+
+Core feature—prompt creation and formatting—is implemented. Additional features are under development.
+
+## 🤝 Contributing
+
+Contributions are welcome! Feel free to open issues or pull requests for improvements or bug fixes.

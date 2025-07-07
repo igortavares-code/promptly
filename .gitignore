@@ -30,8 +30,11 @@ yarn-error.*
 .DS_Store
 *.pem
 
-# local env files
+# Ignorar todos os arquivos de ambiente
+.env
+.env.*
 .env*.local
+
 
 # typescript
 *.tsbuildinfo
