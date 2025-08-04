@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Modal, View, Text, Button, StyleSheet, ScrollView, TouchableWithoutFeedback } from "react-native";
+import React from "react";
+import { Modal, View, Text, StyleSheet, ScrollView, TouchableWithoutFeedback } from "react-native";
 import { PersonalizedOptionsModalProps, Option } from "../../types/personalizedOptionsModal";
 import { OptionItem } from "./OptionItem";
 
@@ -20,7 +20,7 @@ const PersonalizedOptionsModal: React.FC<PersonalizedOptionsModalProps> = ({
   };
 
   return (
-    <Modal visible={visible} transparent animationType="none" presentationStyle="formSheet">
+    <Modal visible={visible} animationType="none" presentationStyle="formSheet">
        <TouchableWithoutFeedback onPress={onClose}>
       <View style={styles.modalContainer}>
         <View style={styles.content}>
@@ -38,8 +38,6 @@ const PersonalizedOptionsModal: React.FC<PersonalizedOptionsModalProps> = ({
           <Text style={{ marginTop: 10 }}>
             Selecionados: {selected.join(", ")}
           </Text>
-
-          <Button title="Fechar" onPress={onClose} />
         </ScrollView >
         </View>
       </View>
