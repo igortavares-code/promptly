@@ -1,6 +1,8 @@
-import React from 'react';
-import ChatScreen from './screens/ChatScreen';
+import React from "react";
+import PrincipalView from "./screens/PrincipalView";
 
 export default function App() {
-  return <ChatScreen />;
+  return (
+      <PrincipalView />
+  );
 }
