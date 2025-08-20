@@ -23,7 +23,10 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "permissions": [
+        "RECORD_AUDIO"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -34,7 +37,8 @@
         {
           "microphonePermission": "Allow Promptly to access your microphone."
         }
-      ]
+      ],
+      "expo-font"
     ]
   }
 }
