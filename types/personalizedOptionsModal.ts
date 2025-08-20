@@ -1,6 +1,6 @@
 export type Option = {
-  categoria: string;
-  formatos: string[];
+  category: string;
+  formats: string[];
 };
 
 export interface PersonalizedOptionsModalProps {

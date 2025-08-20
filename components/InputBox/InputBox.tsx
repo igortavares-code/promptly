@@ -30,7 +30,7 @@ export default function InputBox({
       <TextInput
         value={prompt}
         onChangeText={setPrompt}
-        placeholder="Digite sua pergunta aqui..."
+        placeholder="Type your question here..."
         multiline
         onContentSizeChange={(e) =>
           setInputHeight(Math.min(120, e.nativeEvent.contentSize.height))

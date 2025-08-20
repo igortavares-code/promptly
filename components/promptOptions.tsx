@@ -1,144 +1,144 @@
 export const promptOptions = [
   {
-    categoria: "Por tamanho",
-    formatos: [
-      "Texto com 200 caracteres",
-      "Resumo com 3 linhas",
-      "Parágrafo único",
-      "Texto de até 1 minuto de leitura",
-      "Texto de X palavras",
-      "Explicação em bullet points",
-      "Conteúdo dividido em tópicos numerados",
-      "Tabela comparativa",
-      "Checklist curto"
+    category: "By size",
+    formats: [
+      "Text with 200 characters",
+      "3-line summary",
+      "Single paragraph",
+      "Text of up to 1 minute to read",
+      "X-word text",
+      "Explanation in bullet points",
+      "Content divided into numbered topics",
+      "Comparative table",
+      "Short checklist"
     ]
   },
   {
-    categoria: "Por tipo de linguagem",
-    formatos: [
-      "Linguagem formal (acadêmica)",
-      "Linguagem coloquial (amigável)",
-      "Tom profissional e acessível",
-      "Estilo didático (professor explicando)",
-      "Tom engraçado ou memeável",
-      "Linguagem neutra e inclusiva",
-      "Texto com emojis",
-      "Com expressões regionais"
+    category: "By language type",
+    formats: [
+      "Formal language (academic)",
+      "Colloquial language (friendly)",
+      "Professional and accessible tone",
+      "Didactic style (teacher explaining)",
+      "Funny or 'memeable' tone",
+      "Neutral and inclusive language",
+      "Text with emojis",
+      "With regional expressions"
     ]
   },
   {
-    categoria: "Por objetivo/finalidade",
-    formatos: [
-      "Post para Instagram",
-      "Tweet/X com 280 caracteres",
-      "Script para vídeo (Reels, TikTok)",
-      "Artigo de blog",
-      "E-mail profissional",
-      "Carta de apresentação (cover letter)",
-      "Mensagem para LinkedIn",
-      "Resposta para WhatsApp",
-      "Texto para página de vendas",
-      "Apresentação de pitch",
-      "Texto argumentativo",
-      "Texto com chamada para ação (CTA)",
-      "Resumo executivo"
+    category: "By objective/purpose",
+    formats: [
+      "Instagram post",
+      "Tweet/X with 280 characters",
+      "Video script (Reels, TikTok)",
+      "Blog article",
+      "Professional email",
+      "Cover letter",
+      "LinkedIn message",
+      "WhatsApp reply",
+      "Sales page text",
+      "Pitch presentation",
+      "Argumentative text",
+      "Text with a call to action (CTA)",
+      "Executive summary"
     ]
   },
   {
-    categoria: "Por tipo de conteúdo",
-    formatos: [
-      "Definição simples",
-      "Explicação técnica",
-      "Com exemplo prático",
-      "Metáfora ou analogia",
-      "Passo a passo",
-      "Guia prático",
-      "Regras + exceções",
-      "Prós e contras",
-      "Formato FAQ"
+    category: "By content type",
+    formats: [
+      "Simple definition",
+      "Technical explanation",
+      "With a practical example",
+      "Metaphor or analogy",
+      "Step-by-step guide",
+      "Practical guide",
+      "Rules + exceptions",
+      "Pros and cons",
+      "FAQ format"
     ]
   },
   {
-    categoria: "Formas específicas",
-    formatos: [
-      "Versão resumida e estendida",
-      "Perguntas e respostas",
+    category: "Specific forms",
+    formats: [
+      "Summarized and extended version",
+      "Questions and answers",
       "Storytelling",
-      "Tradução/adaptação de idioma",
-      "3 níveis (iniciante, intermediário, avançado)",
-      "X coisas que você precisa saber",
-      "Resumo + dica de ouro",
-      "Resumo relâmpago ('30 segundos')"
+      "Language translation/adaptation",
+      "3 levels (beginner, intermediate, advanced)",
+      "X things you need to know",
+      "Summary + golden tip",
+      "Lightning summary ('30 seconds')"
     ]
   },
   {
-    categoria: "Por formato de entrega",
-    formatos: [
-      "Roteiro de vídeo com tempo",
-      "Script teatral",
-      "Estrutura de podcast",
-      "Resumo em mapa mental (em texto)",
-      "Apresentação em slides (slide a slide)",
-      "Fluxograma em texto",
-      "Template ou formulário",
-      "Simulação de conversa",
-      "Texto interativo com escolhas"
+    category: "By delivery format",
+    formats: [
+      "Video script with timing",
+      "Theatrical script",
+      "Podcast structure",
+      "Mind map summary (in text)",
+      "Slide presentation (slide by slide)",
+      "Text flowchart",
+      "Template or form",
+      "Conversation simulation",
+      "Interactive text with choices"
     ]
   },
   {
-    categoria: "Por estilo narrativo ou criativo",
-    formatos: [
-      "História em 3 atos",
-      "Fábula com moral",
-      "Diálogo interno/reflexão",
-      "Crônica urbana",
-      "Diário pessoal",
-      "Carta aberta",
-      "Estilo jornalístico",
-      "Texto publicitário (copy)",
-      "Tom de urgência",
-      "Texto de personagem fictício"
+    category: "By narrative or creative style",
+    formats: [
+      "Story in 3 acts",
+      "Fable with a moral",
+      "Internal dialogue/reflection",
+      "Urban chronicle",
+      "Personal diary",
+      "Open letter",
+      "Journalistic style",
+      "Advertising text (copy)",
+      "Urgent tone",
+      "Fictional character's text"
     ]
   },
   {
-    categoria: "Por contexto educacional ou profissional",
-    formatos: [
-      "Plano de aula",
-      "Roteiro de estudo autodidata",
-      "Resposta de prova discursiva",
-      "Resumo para TCC/artigo científico",
-      "Sugestão de título/subtítulo",
-      "Problemática + hipótese de pesquisa",
-      "Descrição de cargo/função",
-      "Resposta a case de entrevista",
-      "Declaração de propósito (SOP)"
+    category: "By educational or professional context",
+    formats: [
+      "Lesson plan",
+      "Self-study script",
+      "Essay question answer",
+      "Summary for final paper/scientific article",
+      "Title/subtitle suggestion",
+      "Research problem + hypothesis",
+      "Job/role description",
+      "Interview case answer",
+      "Statement of purpose (SOP)"
     ]
   },
   {
-    categoria: "Por uso prático e cotidiano",
-    formatos: [
-      "Mensagem difícil com empatia",
-      "Pedido de desculpas",
-      "Justificativa educada",
-      "Resposta para conflito",
-      "Convite para evento",
-      "Legenda romântica",
-      "Resposta para feedback negativo",
-      "Bio para rede social",
-      "Nome criativo para marca/produto",
-      "Mensagem motivacional"
+    category: "By practical and daily use",
+    formats: [
+      "Difficult message with empathy",
+      "Apology",
+      "Polite justification",
+      "Conflict resolution response",
+      "Event invitation",
+      "Romantic caption",
+      "Negative feedback reply",
+      "Social media bio",
+      "Creative name for brand/product",
+      "Motivational message"
     ]
   },
   {
-    categoria: "Por adaptação criativa",
-    formatos: [
-      "Versão em poesia ou haicai",
-      "Tweet viral fictício",
-      "Linguagem medieval/pirata",
-      "Texto como personagem famoso",
-      "Texto rimado ou com musicalidade",
-      "Bullet points com emojis",
-      "Explicação com sugestão de GIF"
+    category: "By creative adaptation",
+    formats: [
+      "Poetry or haiku version",
+      "Fictional viral tweet",
+      "Medieval/pirate language",
+      "Text as a famous character",
+      "Rhyming or musical text",
+      "Bullet points with emojis",
+      "Explanation with a GIF suggestion"
     ]
   }
 ];

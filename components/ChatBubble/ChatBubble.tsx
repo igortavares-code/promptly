@@ -1,6 +1,7 @@
 import React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
-import { ChatMessage } from '../utils/types';
+import { View, StyleSheet } from 'react-native';
+import { ChatMessage } from '../../types/chat';
+import Text from '../Text/Text';
 
 export const ChatBubble = ({ message }: { message: ChatMessage }) => (
   <View style={[styles.bubble, message.role === 'user' ? styles.user : styles.model]}>

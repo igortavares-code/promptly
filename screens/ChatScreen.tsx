@@ -2,11 +2,11 @@ import React, { useState, useEffect, useRef } from "react";
 import {
   View,
   ScrollView,
-  Text,
   ActivityIndicator,
   KeyboardAvoidingView,
   Platform,
 } from "react-native";
+import Text from '../components/Text/Text';
 import InputBox from "../components/InputBox/InputBox";
 import PersonalizedOptionsModal from "../components/PersonalizedOptionsModal/index";
 import { promptOptions } from "../components/promptOptions";
@@ -22,31 +22,30 @@ export default function ChatScreen() {
   const [chatMessages, setChatMessages] = useState<ChatMessage[]>([]);
   const scrollViewRef = useRef<ScrollView>(null);
 
-  // Scroll to bottom when messages update
   useEffect(() => {
     if (scrollViewRef.current) {
       scrollViewRef.current.scrollToEnd({ animated: true });
     }
   }, [chatMessages]);
 
-  const itens = ['carro', 'moto', 'bicicleta'];
+  const items = ['car', 'motorcycle', 'bicycle'];
   const generateContent = async () => {
     if (!prompt.trim()) {
-      setError("Por favor, digite um prompt.");
+      setError("Please, enter a prompt.");
       return;
     }
 
     setLoading(true);
     setError(null);
 
-    const personalizedPrompt = selected.length === 0 ? '' : ` Por favor, crie o conteúdo seguindo esse ou esses formatos: ${selected.join(', ')}`;
+    const personalizedPrompt = selected.length === 0 ? '' : `Please, create the content following this or these formats: ${selected.join(', ')}`;
     const userMessage: ChatMessage = { role: "user", text: prompt};
     setChatMessages((prev) => [...prev, userMessage]);
     const currentPrompt = prompt;
     setPrompt("");
 
     try {
-      // Envia o prompt para o serviço Gemini
+      // Sends the prompt to the Gemini service
       const responseText = await sendPromptToGemini(
         currentPrompt,
         personalizedPrompt
@@ -57,8 +56,8 @@ export default function ChatScreen() {
       };
       setChatMessages((prev) => [...prev, modelMessage]);
     } catch (e) {
-      setError("Ocorreu um erro ao gerar o conteúdo. Tente novamente.");
-      setChatMessages((prev) => prev.slice(0, -1)); // remove user message se erro
+      setError("An error occurred while generating the content. Please try again.");
+      setChatMessages((prev) => prev.slice(0, -1));
     } finally {
       setLoading(false);
     }
@@ -70,20 +69,6 @@ export default function ChatScreen() {
       behavior={Platform.OS === "ios" ? "padding" : "height"}
       keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 20}
     >
-      <View
-        style={{
-          backgroundColor: "white",
-          padding: 16,
-          alignItems: "center",
-          justifyContent: "center",
-          elevation: 3,
-        }}
-      >
-        <Text style={{ fontSize: 20, fontWeight: "bold", color: "#333" }}>
-          Promptly
-        </Text>
-      </View>
-
       <ScrollView
         ref={scrollViewRef}
         style={{ flex: 1, paddingHorizontal: 16, paddingTop: 20 }}
@@ -91,7 +76,7 @@ export default function ChatScreen() {
       >
         {chatMessages.length === 0 ? (
           <Text style={{ textAlign: "center", marginTop: 50, color: "#666" }}>
-            Comece uma conversa com o Gemini!
+            Start a conversation!
           </Text>
         ) : (
           chatMessages.map((message, i) => (
@@ -133,7 +118,7 @@ export default function ChatScreen() {
           >
             <ActivityIndicator size="small" color="#0000ff" />
             <Text style={{ marginLeft: 8, color: "#000" }}>
-              Gerando resposta...
+              Generating response...
             </Text>
           </View>
         )}

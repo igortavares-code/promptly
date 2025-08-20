@@ -1,18 +1,19 @@
 import React, { useState } from "react";
-import { View, TouchableOpacity, Text, StyleSheet } from "react-native";
+import { View, TouchableOpacity, StyleSheet } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { FormatItem } from "./FormatItem";
+import Text from '../Text/Text';
 
 interface OptionItemProps {
-  categoria: string;
-  formatos: string[];
+  category: string;
+  formats: string[];
   selectedFormats: string[];
   onToggleFormat: (format: string) => void;
 }
 
 export const OptionItem: React.FC<OptionItemProps> = ({
-  categoria,
-  formatos,
+  category,
+  formats,
   selectedFormats,
   onToggleFormat,
 }) => {
@@ -24,15 +25,15 @@ export const OptionItem: React.FC<OptionItemProps> = ({
         style={styles.item}
         onPress={() => setExpanded((prev) => !prev)}
         accessibilityRole="button"
-        accessibilityLabel={`Toggle ${categoria}`}
+        accessibilityLabel={`Toggle ${category}`}
       >
-        <Text style={styles.title}>{categoria}</Text>
+        <Text style={styles.title}>{category}</Text>
         <AntDesign name={expanded ? "up" : "down"} size={16} color="black" />
       </TouchableOpacity>
 
       {expanded && (
         <View style={styles.sublist}>
-          {formatos.map((format) => (
+          {formats.map((format) => (
             <FormatItem
               key={format}
               format={format}

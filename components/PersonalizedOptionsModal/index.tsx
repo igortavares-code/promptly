@@ -28,15 +28,15 @@ const PersonalizedOptionsModal: React.FC<PersonalizedOptionsModalProps> = ({
           {options.map((option: Option, index: number) => (
             <OptionItem
               key={index}
-              categoria={option.categoria}
-              formatos={option.formatos}
+              category={option.category}
+              formats={option.formats}
               selectedFormats={selected}
               onToggleFormat={toggleSelection}
             />
           ))}
 
           <Text style={{ marginTop: 10 }}>
-            Selecionados: {selected.join(", ")}
+            Selected: {selected.join(", ")}
           </Text>
         </ScrollView >
         </View>
