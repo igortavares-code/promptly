@@ -26,7 +26,8 @@
       "edgeToEdgeEnabled": true,
       "permissions": [
         "RECORD_AUDIO"
-      ]
+      ],
+      "windowSoftInputMode": "adjustResize"
     },
     "web": {
       "favicon": "./assets/favicon.png"
