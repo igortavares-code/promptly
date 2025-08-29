@@ -3,9 +3,7 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import {
   View,
   Alert,
-  Platform,
   StyleSheet,
-  KeyboardAvoidingView,
   TouchableWithoutFeedback,
   Keyboard,
 } from "react-native";
@@ -19,7 +17,6 @@ import {
   useAudioPlayerStatus,
 } from "expo-audio";
 import * as FileSystem from "expo-file-system";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Note } from "../types/notes";
 import { NoteList } from "../components/NoteList/NoteList";
 import { InputBar } from "../components/InputBar/InputBar";
@@ -32,8 +29,6 @@ export default function NotesScreen() {
   const [notes, setNotes] = useState<Note[]>([]);
   const [input, setInput] = useState("");
   const [currentTags, setCurrentTags] = useState<string[]>([]);
-  const [editingId, setEditingId] = useState<string | null>(null);
-  const [editingText, setEditingText] = useState("");
   const [playingId, setPlayingId] = useState<string | null>(null);
   const [micGranted, setMicGranted] = useState<boolean>(false);
   const recorder = useAudioRecorder(RecordingPresets.HIGH_QUALITY);
@@ -50,6 +45,8 @@ export default function NotesScreen() {
   const status = useAudioPlayerStatus(player);
   let playingStatus =
     status?.isLoaded && !status.playing && status.didJustFinish;
+
+  const [inputHeight, setInputHeight] = useState(0);
 
   useEffect(() => {
     (async () => {
@@ -208,77 +205,62 @@ export default function NotesScreen() {
 
   const onEdit = useCallback((note: Note) => {
     if (note.type !== "text") {
-      Alert.alert("Aviso", "Só é possível editar notas de text.");
+      Alert.alert("Warning", "It's only possible to edit text notes.");
       return;
     }
-    setEditingId(note.id);
-    setEditingText(note.content);
-  }, []);
 
-  const onSaveEdit = useCallback(() => {
-    if (!editingId) return;
     setNotes((prev) =>
       sortNotes(
         prev.map((n) =>
-          n.id === editingId
-            ? { ...n, content: editingText, edited: nowIso() }
+          n.id === note.id
+            ? { ...n, content: note.content, edited: nowIso() }
             : n
         )
       )
     );
-    setEditingId(null);
-    setEditingText("");
-  }, [editingId, editingText]);
-
-  const onCancelEdit = useCallback(() => {
-    setEditingId(null);
-    setEditingText("");
   }, []);
 
-  async function clearAudioFiles() {
-    try {
-      const rootFiles = await FileSystem.readDirectoryAsync(
-        FileSystem.documentDirectory!
-      );
-      if (rootFiles.includes("ExpoAudio")) {
-        const audioFiles = await FileSystem.readDirectoryAsync(
-          FileSystem.documentDirectory + "ExpoAudio"
-        );
-        for (const f of audioFiles) {
-          if (f.endsWith(".m4a")) {
-            await FileSystem.deleteAsync(
-              FileSystem.documentDirectory + "ExpoAudio/" + f,
-              { idempotent: true }
-            );
-          }
-        }
-      }
-    } catch (e) {
-      console.error("Erro limpando áudios", e);
-    }
-  }
+  // async function clearAudioFiles() {
+  //   try {
+  //     const rootFiles = await FileSystem.readDirectoryAsync(
+  //       FileSystem.documentDirectory!
+  //     );
+  //     if (rootFiles.includes("ExpoAudio")) {
+  //       const audioFiles = await FileSystem.readDirectoryAsync(
+  //         FileSystem.documentDirectory + "ExpoAudio"
+  //       );
+  //       for (const f of audioFiles) {
+  //         if (f.endsWith(".m4a")) {
+  //           await FileSystem.deleteAsync(
+  //             FileSystem.documentDirectory + "ExpoAudio/" + f,
+  //             { idempotent: true }
+  //           );
+  //         }
+  //       }
+  //     }
+  //   } catch (e) {
+  //     console.error("Erro limpando áudios", e);
+  //   }
+  // }
 
-  async function resetAll() {
-    await AsyncStorage.removeItem("notes");
-    await clearAudioFiles();
-  }
+  // async function resetAll() {
+  //   await AsyncStorage.removeItem("notes");
+  //   await clearAudioFiles();
+  // }
 
-  const handleResetAll = async () => {
-    await resetAll();
-    setNotes([]);
-  };
+  // const handleResetAll = async () => {
+  //   await resetAll();
+  //   setNotes([]);
+  // };
 
   return (
-    <KeyboardAvoidingView
-      style={styles.container}
-      behavior={Platform.OS === "ios" ? "padding" : undefined}
-      keyboardVerticalOffset={10}
-    >
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View style={{ flex: 1 }}>
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <View style={styles.container}>
+        <View style={styles.containerText}>
           <Text style={styles.title}>My notes</Text>
+        </View>
 
-          {/* <Button onPress={handleResetAll} title="Delete All" /> */}
+        <View style={{ flex: 1 }}>
           <NoteList
             notes={notes}
             playingId={playingId}
@@ -286,27 +268,39 @@ export default function NotesScreen() {
             onPlayAudio={onPlayAudio}
             onTogglePin={onTogglePin}
             onEdit={onEdit}
+            contentContainerStyle={{
+              paddingBottom: inputHeight + 12,
+            }}
           />
-
-          <View style={styles.inputWrapper}>
-            <InputBar
-              value={input}
-              onChange={handleTextChange}
-              currentTags={currentTags}
-              onSubmitText={addTextNote}
-              onStartRecord={onStartRecord}
-              onStopRecord={onStopRecord}
-              isRecording={recorderState.isRecording}
-            />
-          </View>
         </View>
-      </TouchableWithoutFeedback>
-    </KeyboardAvoidingView>
+
+        {/* MEÇA AQUI a altura do InputBar (não na lista) */}
+        <View onLayout={(e) => setInputHeight(e.nativeEvent.layout.height)}>
+          <InputBar
+            value={input}
+            onChange={handleTextChange}
+            currentTags={currentTags}
+            onSubmitText={addTextNote}
+            onStartRecord={onStartRecord}
+            onStopRecord={onStopRecord}
+            isRecording={recorderState.isRecording}
+          />
+        </View>
+      </View>
+    </TouchableWithoutFeedback>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 16, backgroundColor: "rgb(237 225 209)" },
+  container: {
+    flex: 1,
+    paddingHorizontal: 16,
+    paddingVertical: 2,
+    backgroundColor: "#EDE1D1",
+  },
+  containerText: {
+    paddingVertical: 8,
+  },
   title: { fontSize: 52, fontWeight: "bold", marginBottom: 10 },
-  inputWrapper: { paddingTop: 6 },
+  inputWrapper: { paddingTop: 2 },
 });

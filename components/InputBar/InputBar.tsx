@@ -82,27 +82,28 @@ export const InputBar: React.FC<Props> = ({
 };
 
 const styles = StyleSheet.create({
-  wrapper: { gap: 6, paddingTop: 6 },
+  wrapper: { gap: 0, paddingTop: 6 },
   row: {
     flexDirection: "row",
-    gap: 8,
-    alignItems: "flex-end",
+    gap: 10,
+    alignItems: "flex-end"
   },
   input: {
     flex: 1,
-    minHeight: 40,
+    minHeight: 10,
     maxHeight: 120,
     borderWidth: 1,
     borderColor: "#d0d0d0",
     borderRadius: 10,
     padding: 10,
     backgroundColor: "#fff",
+    fontSize: 16
   },
   action: {
     width: 44,
     height: 44,
-    borderRadius: 12,
-    backgroundColor: "#cce5ff",
+    borderRadius: 20,
+    backgroundColor: "#d5c4b1ff",
     alignItems: "center",
     justifyContent: "center",
   },

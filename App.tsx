@@ -2,6 +2,9 @@ import React from "react";
 import { View, ActivityIndicator } from "react-native";
 import { useFonts } from "expo-font";
 import PrincipalView from "./screens/PrincipalView";
+import { NavigationContainer } from "@react-navigation/native";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -19,6 +22,12 @@ export default function App() {
 
   return (
     //"Ready to shape your thoughts into words?"
-    <PrincipalView />
+    <GestureHandlerRootView style={{ flex: 1, backgroundColor: "#eee" }}>
+      <SafeAreaProvider style={{ flex: 1, backgroundColor: "#eee" }}>
+        <NavigationContainer>
+          <PrincipalView />
+        </NavigationContainer>
+      </SafeAreaProvider>
+    </GestureHandlerRootView>
   );
 }

@@ -12,6 +12,7 @@ import PersonalizedOptionsModal from "../components/PersonalizedOptionsModal/ind
 import { promptOptions } from "../components/promptOptions";
 import { sendPromptToGemini } from "../services/geminiService";
 import { ChatMessage } from "../types/chat";
+import { useAIStore } from "../store/useAIStore";
 
 export default function ChatScreen() {
   const [prompt, setPrompt] = useState("");
@@ -21,6 +22,12 @@ export default function ChatScreen() {
   const [selected, setOptionsSelected] = useState<string[]>([]);
   const [chatMessages, setChatMessages] = useState<ChatMessage[]>([]);
   const scrollViewRef = useRef<ScrollView>(null);
+
+  const aiInput = useAIStore((s) => s.currentAIInput);
+
+  useEffect(() => {
+    if (aiInput) setPrompt(aiInput);
+  }, [aiInput]);
 
   useEffect(() => {
     if (scrollViewRef.current) {

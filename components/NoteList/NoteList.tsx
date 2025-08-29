@@ -1,6 +1,6 @@
 import React, { memo, useMemo } from "react";
-import { SectionList } from "react-native";
-import Text from '../Text/Text';
+import { SectionList, StyleSheet } from "react-native";
+import Text from "../Text/Text";
 import { Note } from "../../types/notes";
 import { NoteItem } from "../NoteItem/NoteItem";
 
@@ -11,10 +11,19 @@ type Props = {
   onPlayAudio: (n: Note) => void;
   onTogglePin: (n: Note) => void;
   onEdit: (n: Note) => void;
+  contentContainerStyle: any;
 };
 
 export const NoteList: React.FC<Props> = memo(
-  ({ notes, playingId, playingStatus, onPlayAudio, onTogglePin, onEdit }) => {
+  ({
+    notes,
+    playingId,
+    playingStatus,
+    onPlayAudio,
+    onTogglePin,
+    onEdit,
+    contentContainerStyle,
+  }) => {
     const sections = useMemo(() => {
       const pinned = notes.filter((n) => n.pinned);
       const others = notes.filter((n) => !n.pinned);
@@ -38,17 +47,25 @@ export const NoteList: React.FC<Props> = memo(
             onEdit={(id, text) => onEdit({ ...item, content: text })}
           />
         )}
-        renderSectionHeader={({ section: { title, data } }) =>
-          data.length > 0 ? (
-            <Text style={{ fontWeight: "bold", marginTop: 12 }}>{title}</Text>
-          ) : null
-        }
+        renderSectionHeader={({ section: { title, data } }) => {
+          if (!title) return null;
+          if (data.length === 0) return null;
+
+          return <Text style={styles.sectionHeader}>{title}</Text>;
+        }}
         ListEmptyComponent={<Text>No notes yet</Text>}
         initialNumToRender={10}
         windowSize={8}
-        removeClippedSubviews
         stickySectionHeadersEnabled
+        keyboardShouldPersistTaps="handled"
+        keyboardDismissMode="on-drag"
+        contentContainerStyle={contentContainerStyle}
+        removeClippedSubviews={false}
       />
     );
   }
 );
+
+const styles = StyleSheet.create({
+  sectionHeader: { fontWeight: "bold", marginVertical: 12, marginTop: 0 },
+});

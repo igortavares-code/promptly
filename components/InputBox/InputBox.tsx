@@ -71,8 +71,6 @@ export default function InputBox({
 
 const styles = StyleSheet.create({
   textBoxArea: {
-    position: "absolute",
-    bottom: 20,
     alignSelf: "center",
     width: "100%",
     maxWidth: 616,
